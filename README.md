@@ -21,6 +21,12 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in EJB Contai
 ./run-payara.sh
 ```
 
+## Do Requests
+
+```
+./do-webrequest.sh
+```
+
 
 ## Analize Logs
 
