@@ -3,8 +3,8 @@ package org.example.sharedlib;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.Dependent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -19,7 +19,7 @@ public class ExampleDependedBean {
 
     public ExampleDependedBean() {
         this.id = RandomUtil.randomId(ExampleDependedBean.class);
-        LOG = LogManager.getLogger(id);
+        LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 

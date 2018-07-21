@@ -6,11 +6,11 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.ExampleRequestBean;
 import org.example.sharedlib.RandomUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -38,7 +38,7 @@ public class ExampleEjbStartup {
 
     public ExampleEjbStartup() {
         id = RandomUtil.randomId(ExampleEjbStartup.class);
-        LOG = LogManager.getLogger(id);
+        LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 

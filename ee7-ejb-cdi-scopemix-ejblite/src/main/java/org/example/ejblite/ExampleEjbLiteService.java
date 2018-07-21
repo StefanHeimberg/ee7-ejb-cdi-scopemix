@@ -5,12 +5,12 @@ import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.ejb.ExampleEjbFacade;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.ExampleRequestBean;
 import org.example.sharedlib.RandomUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -34,7 +34,7 @@ public class ExampleEjbLiteService {
 
     public ExampleEjbLiteService() {
         id = RandomUtil.randomId(ExampleEjbLiteService.class);
-        LOG = LogManager.getLogger(id);
+        LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 

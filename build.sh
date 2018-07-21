@@ -5,13 +5,11 @@ set -e
 __dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd ${__dir}
 
-if [ ! -d "deployments/" ]; then
-    mkdir -v deployments/
+if [ -d "deployments/" ]; then
+    rm -vr deployments/
 fi
 
-if [ -f "deployments/ee7-ejb-cdi-scopemix-ear.ear" ]; then
-    rm -v deployments/ee7-ejb-cdi-scopemix-ear.ear
-fi
+mkdir -v deployments/
 
 ./mvnw clean install
 

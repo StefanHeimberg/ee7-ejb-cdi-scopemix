@@ -3,8 +3,8 @@ package org.example.sharedlib;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -19,7 +19,7 @@ public class ExampleRequestBean {
 
     public ExampleRequestBean() {
         this.id = RandomUtil.randomId(ExampleRequestBean.class);
-        LOG = LogManager.getLogger(id);
+        LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 

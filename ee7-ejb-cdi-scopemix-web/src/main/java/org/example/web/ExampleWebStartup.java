@@ -6,13 +6,13 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.ejb.ExampleEjbFacade;
 import org.example.ejb.ExampleEjbService1;
 import org.example.ejblite.ExampleEjbLiteService;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.RandomUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -43,7 +43,7 @@ public class ExampleWebStartup extends HttpServlet {
 
     public ExampleWebStartup() {
         this.id = RandomUtil.randomId(ExampleWebStartup.class);
-        LOG = LogManager.getLogger(id);
+        LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 

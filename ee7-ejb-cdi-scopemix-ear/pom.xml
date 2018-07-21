@@ -23,11 +23,6 @@
         </dependency>
         
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-        </dependency>
-        
-        <dependency>
             <groupId>org.example</groupId>
             <artifactId>ee7-ejb-cdi-scopemix-web</artifactId>
             <version>${project.version}</version>

@@ -4,11 +4,11 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.ExampleRequestBean;
 import org.example.sharedlib.RandomUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -29,7 +29,7 @@ public class ExampleEjbService1 {
 
     public ExampleEjbService1() {
         id = RandomUtil.randomId(ExampleEjbService1.class);
-        LOG = LogManager.getLogger(id);
+        LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 
