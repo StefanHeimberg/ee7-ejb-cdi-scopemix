@@ -34,8 +34,8 @@ public class ExampleWebStartup extends HttpServlet {
     @EJB
     private ExampleEjbLiteService exampleEjbLiteService;
 
-    // funktioniert mit loadOnStartup nicht.
-    // java.lang.Exception: java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: org.apache.catalina.LifecycleException: org.jboss.weld.context.ContextNotActiveException: WELD-001303: No active contexts for scope type javax.enterprise.context.RequestScoped
+    // payara: funktioniert mit loadOnStartup nicht.
+    // payara: java.lang.Exception: java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: org.apache.catalina.LifecycleException: org.jboss.weld.context.ContextNotActiveException: WELD-001303: No active contexts for scope type javax.enterprise.context.RequestScoped
     //    @Inject
     //    private ExampleRequestBean exampleRequestBean;
     @Inject

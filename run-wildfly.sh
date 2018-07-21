@@ -15,6 +15,7 @@ if [ -f "logs/example.log" ]; then
 fi
 
 docker run -i -t --rm \
+    --name ee7-ejb-cdi-scopemix-wildfly \
     -p 8080:8080 \
     -p 9990:9990 \
     -v ${__dir}/deployments:/opt/jboss/wildfly/standalone/deployments \

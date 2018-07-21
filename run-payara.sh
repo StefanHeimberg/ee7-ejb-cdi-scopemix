@@ -15,6 +15,7 @@ if [ -f "logs/example.log" ]; then
 fi
 
 docker run -i -t --rm \
+    --name ee7-ejb-cdi-scopemix-payara \
     -p 8080:8080 \
     -p 8181:8181 \
     -p 4848:4848 \
