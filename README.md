@@ -15,7 +15,13 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in EJB Contai
 ./build.sh
 ```
 
-## Run in Payara
+## Deploy / Redploy
+
+```
+./deploy.sh
+```
+
+## Run Payara
 
 ```
 ./run-payara.sh
@@ -24,7 +30,7 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in EJB Contai
 Konsole: http://localhost:4848
 User   : <ohne>
 
-## Run in Wildfly
+## Run Wildfly
 
 ```
 ./run-wildfly.sh
@@ -48,7 +54,7 @@ docker exec -it ee7-ejb-cdi-scopemix-wildfly curl http://localhost:8080/web/requ
 docker exec -it ee7-ejb-cdi-scopemix-wildfly cp /opt/jboss/wildfly/standalone/log/server.log /opt/jboss/logs/example.log
 ```
 
-## Run in Weblogic
+## Run Weblogic
 
 ```
 ./run-weblogic.sh

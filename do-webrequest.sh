@@ -2,4 +2,4 @@
 
 set -e
 
-curl http://localhost:8080/web/request
+curl -v http://localhost:8080/web/request
