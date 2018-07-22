@@ -10,4 +10,4 @@ if [ ! -f "logs/example.log" ]; then
     exit 1
 fi
 
-grep "ExampleWebStartup" logs/example.log
+egrep "originId: ExampleWebStartup-[0-9]{4}|ExampleWebStartup-[0-9]{4} .* called" logs/example.log

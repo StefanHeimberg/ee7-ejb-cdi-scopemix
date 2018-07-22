@@ -86,3 +86,8 @@ docker exec -it ee7-ejb-cdi-scopemix-wildfly cp /opt/jboss/wildfly/standalone/lo
 ## Weblogic Specifics
 
 ```./run-weblogic.sh```Start Weblogic Application Server Container (Management: http://localhost:8001, User: weblogic/Abc123465)
+
+
+```
+docker exec -it ee7-ejb-cdi-scopemix-weblogic cp servers/AdminServer/logs/AdminServer.log logs/example.log
+```
