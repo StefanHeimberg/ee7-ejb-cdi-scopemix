@@ -42,6 +42,7 @@
                     <defaultLibBundleDir>lib</defaultLibBundleDir>
                     <libraryDirectoryMode>NONE</libraryDirectoryMode>
                     <skinnyWars>true</skinnyWars>
+                    <skipClassPathModification>true</skipClassPathModification>
                     <modules>
                         <ejbModule>
                             <groupId>org.example</groupId>
