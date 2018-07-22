@@ -51,13 +51,10 @@ docker exec -it ee7-ejb-cdi-scopemix-wildfly cp /opt/jboss/wildfly/standalone/lo
 
 ```
 ./run-weblogic.sh
-./add-wildfly-admin-user.sh
 ```
 
 Konsole : http://localhost:8001/console
 User    : weblogic/Abc123465
-
-Einloggen und von hand deployen.
 
 
 ## Do Requests

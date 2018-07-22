@@ -30,6 +30,9 @@ public class ExampleEjbLiteService {
     @EJB
     private ExampleEjbStartup exampleEjbStartup;
 
+    // weblogic: funktioniert in kombination mit einem loadOnStartup = 1 Servlet nicht.
+    // weblogic: fehler: org.jboss.weld.exceptions.DeploymentException: WELD-001409: Ambiguous dependencies for type ExampleRequestBean with qualifiers @Default
+    //                    at injection point [BackedAnnotatedField] @Inject private org.example.ejb.ExampleEjbFacade.exampleRequestBean
     @Inject
     private ExampleRequestBean exampleRequestBean;
 
@@ -56,8 +59,8 @@ public class ExampleEjbLiteService {
         LOG.info("originId: {}, {}caller: {}, this.class: {}", originId, indent, callerId, getClass().getName());
         LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleRequestBean.class: {}", originId, indent, callerId, exampleRequestBean.getClass().getName());
-        exampleRequestBean.logIds(indent + "  ", originId, id);
+        //        LOG.info("originId: {}, {}caller: {}, exampleRequestBean.class: {}", originId, indent, callerId, exampleRequestBean.getClass().getName());
+        //        exampleRequestBean.logIds(indent + "  ", originId, id);
 
         LOG.info("originId: {}, {}caller: {}, exampleEjbFacade.class: {}", originId, indent, callerId, exampleEjbFacade.getClass().getName());
         exampleEjbFacade.logIds(indent + "  ", originId, id);

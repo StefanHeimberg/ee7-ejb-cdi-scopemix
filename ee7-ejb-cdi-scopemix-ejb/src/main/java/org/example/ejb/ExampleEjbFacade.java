@@ -28,6 +28,9 @@ public class ExampleEjbFacade {
     @EJB
     private ExampleEjbService2 exampleService2;
 
+    // weblogic: funktioniert in kombination mit einem loadOnStartup = 1 Servlet nicht.
+    // weblogic: fehler: org.jboss.weld.exceptions.DeploymentException: WELD-001409: Ambiguous dependencies for type ExampleRequestBean with qualifiers @Default
+    //                      at injection point [BackedAnnotatedField] @Inject private org.example.ejb.ExampleEjbFacade.exampleRequestBean
     @Inject
     private ExampleRequestBean exampleRequestBean;
 

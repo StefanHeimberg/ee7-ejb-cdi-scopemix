@@ -20,6 +20,5 @@ docker run -i -t --rm \
     -p 8080:8001 \
     -v ${__dir}/deployments:/u01/oracle/user_projects/domains/base_domain/autodeploy \
     -v ${__dir}/logs:/u01/oracle/user_projects/domains/base_domain/logs \
-    -e PRODUCTION_MODE=false \
-    -e DOMAIN_PRODUCTION_MODE=false \
-    iatebes/weblogic-1221-generic-domain:latest
+    iatebes/weblogic-1221-generic-domain:latest \
+    /bin/bash -c "startWebLogic.sh -Dweblogic.ProductionModeEnabled=false"
