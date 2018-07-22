@@ -10,6 +10,10 @@ if [ ! -f "ee7-ejb-cdi-scopemix-ear/target/ee7-ejb-cdi-scopemix-ear.ear" ]; then
     exit 1
 fi
 
-rm -vr deployments/* | true
+if [ -d "deployments/" ]; then
+    rm -fvr deployments/*
+else
+    mkdir deployments/
+fi
 
 cp -v ee7-ejb-cdi-scopemix-ear/target/ee7-ejb-cdi-scopemix-ear.ear deployments/

@@ -8,7 +8,7 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in WEB and EJ
 1. Start Application Server in Terminal 1 (Payara in this Example):
 
 	```
-	./clean.sh && ./build.sh && ./run-paraya.sh
+	./clean.sh && ./build.sh && ./deploy.sh && ./run-payara.sh
 	```
 
 2. Analize Logs in Terminal 2:
@@ -16,6 +16,7 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in WEB and EJ
 	```
 	./logs-ejbstartup.sh
 	./logs-webstartup.sh
+        ./logs-webrequest.sh
 	```
 	
 3. Do simple Web Request in Terminal 2:
