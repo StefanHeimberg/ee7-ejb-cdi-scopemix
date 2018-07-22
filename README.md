@@ -16,7 +16,7 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in WEB and EJ
 	```
 	./logs-ejbstartup.sh
 	./logs-webstartup.sh
-        ./logs-webrequest.sh
+	./logs-webrequest.sh
 	```
 	
 3. Do simple Web Request in Terminal 2:
