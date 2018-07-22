@@ -6,6 +6,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import org.example.ejb.ExampleEjbFacade;
+import org.example.ejb.ExampleEjbStartup;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.ExampleRequestBean;
 import org.example.sharedlib.RandomUtil;
@@ -25,6 +26,9 @@ public class ExampleEjbLiteService {
 
     @EJB
     private ExampleEjbFacade exampleEjbFacade;
+
+    @EJB
+    private ExampleEjbStartup exampleEjbStartup;
 
     @Inject
     private ExampleRequestBean exampleRequestBean;
@@ -57,6 +61,9 @@ public class ExampleEjbLiteService {
 
         LOG.info("originId: {}, {}caller: {}, exampleEjbFacade.class: {}", originId, indent, callerId, exampleEjbFacade.getClass().getName());
         exampleEjbFacade.logIds(indent + "  ", originId, id);
+
+        LOG.info("originId: {}, {}caller: {}, exampleEjbStartup.class: {}", originId, indent, callerId, exampleEjbStartup.getClass().getName());
+        exampleEjbStartup.logIds(indent + "  ", originId, id);
 
         LOG.info("originId: {}, {}caller: {}, exampleDependedBean.class: {}", originId, indent, callerId, exampleDependedBean.getClass().getName());
         exampleDependedBean.logIds(indent + "  ", originId, id);

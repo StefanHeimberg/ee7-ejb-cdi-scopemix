@@ -47,13 +47,6 @@ ins /opt/jboss/wildfly/standalone/log/server.log
 docker exec -it ee7-ejb-cdi-scopemix-wildfly cp /opt/jboss/wildfly/standalone/log/server.log /opt/jboss/logs/example.log
 ```
 
-Web Request absetzen
-
-```
-docker exec -it ee7-ejb-cdi-scopemix-wildfly curl http://localhost:8080/web/request
-docker exec -it ee7-ejb-cdi-scopemix-wildfly cp /opt/jboss/wildfly/standalone/log/server.log /opt/jboss/logs/example.log
-```
-
 ## Run Weblogic
 
 ```

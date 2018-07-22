@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.example.ejb.ExampleEjbFacade;
 import org.example.ejb.ExampleEjbService1;
+import org.example.ejb.ExampleEjbStartup;
 import org.example.ejblite.ExampleEjbLiteService;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.ExampleRequestBean;
@@ -38,6 +39,9 @@ public class ExampleWebRequest extends HttpServlet {
 
     @EJB
     private ExampleEjbFacade exampleEjbFacade;
+
+    @EJB
+    private ExampleEjbStartup exampleEjbStartup;
 
     @EJB
     private ExampleEjbLiteService exampleEjbLiteService;
@@ -80,6 +84,9 @@ public class ExampleWebRequest extends HttpServlet {
 
         LOG.info("originId: {}, {}caller: {}, exampleService2.class: {}", originId, indent, callerId, exampleEjbFacade.getClass().getName());
         exampleEjbFacade.logIds(indent + "  ", originId, id);
+
+        LOG.info("originId: {}, {}caller: {}, exampleEjbStartup.class: {}", originId, indent, callerId, exampleEjbStartup.getClass().getName());
+        exampleEjbStartup.logIds(indent + "  ", originId, id);
 
         LOG.info("originId: {}, {}caller: {}, exampleEjbLiteService.class: {}", originId, indent, callerId, exampleEjbLiteService.getClass().getName());
         exampleEjbLiteService.logIds(indent + "  ", originId, id);

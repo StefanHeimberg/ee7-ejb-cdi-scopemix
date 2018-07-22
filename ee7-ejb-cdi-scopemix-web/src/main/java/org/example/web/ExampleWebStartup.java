@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import org.example.ejb.ExampleEjbFacade;
 import org.example.ejb.ExampleEjbService1;
+import org.example.ejb.ExampleEjbStartup;
 import org.example.ejblite.ExampleEjbLiteService;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.RandomUtil;
@@ -33,6 +34,9 @@ public class ExampleWebStartup extends HttpServlet {
 
     @EJB
     private ExampleEjbLiteService exampleEjbLiteService;
+
+    @EJB
+    private ExampleEjbStartup exampleEjbStartup;
 
     // payara: funktioniert mit loadOnStartup nicht.
     // payara: java.lang.Exception: java.lang.IllegalStateException: ContainerBase.addChild: start: org.apache.catalina.LifecycleException: org.apache.catalina.LifecycleException: org.jboss.weld.context.ContextNotActiveException: WELD-001303: No active contexts for scope type javax.enterprise.context.RequestScoped
@@ -72,6 +76,9 @@ public class ExampleWebStartup extends HttpServlet {
 
         LOG.info("originId: {}, {}caller: {}, exampleEjbLiteService.class: {}", originId, indent, callerId, exampleEjbLiteService.getClass().getName());
         exampleEjbLiteService.logIds(indent + "  ", originId, id);
+
+        LOG.info("originId: {}, {}caller: {}, exampleEjbStartup.class: {}", originId, indent, callerId, exampleEjbStartup.getClass().getName());
+        exampleEjbStartup.logIds(indent + "  ", originId, id);
 
         LOG.info("originId: {}, {}caller: {}, exampleDependedBean.class: {}", originId, indent, callerId, exampleDependedBean.getClass().getName());
         exampleDependedBean.logIds(indent + "  ", originId, id);
