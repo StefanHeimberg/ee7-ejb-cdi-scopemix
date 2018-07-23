@@ -37,4 +37,8 @@ public class ExampleDependedBean {
         LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
     }
 
+    public String getId() {
+        return id;
+    }
+
 }

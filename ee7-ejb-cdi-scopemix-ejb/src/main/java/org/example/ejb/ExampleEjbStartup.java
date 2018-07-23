@@ -6,6 +6,8 @@ import javax.ejb.EJB;
 import javax.ejb.Singleton;
 import javax.ejb.Startup;
 import javax.inject.Inject;
+import org.example.ejb.job.ExampleJob;
+import org.example.ejb.job.ExampleJobScheduler;
 import org.example.sharedlib.ExampleDependedBean;
 import org.example.sharedlib.ExampleRequestBean;
 import org.example.sharedlib.RandomUtil;
@@ -46,6 +48,16 @@ public class ExampleEjbStartup {
     public void postConstruct() {
         LOG.info("postConstruct called");
         logIds("", id, id);
+
+        final ExampleRequestBean exampleRequestBeanStatic = ExampleRequestBean.getBeanInstance();
+        LOG.info("originId: {}, {}caller: {}, exampleRequestBeanStatic.class: {}", id, "!" + "  ", id, exampleRequestBeanStatic.getClass().getName());
+        exampleRequestBeanStatic.logIds("!", id, id);
+
+        final ExampleJobScheduler jobScheduler = ExampleJobScheduler.getBeanInstance();
+        jobScheduler.schedule(ExampleJob.getBeanInstance());
+        jobScheduler.schedule(ExampleJob.getBeanInstance());
+        jobScheduler.schedule(ExampleJob.getBeanInstance());
+        jobScheduler.schedule(ExampleJob.getBeanInstance());
     }
 
     @PreDestroy
@@ -54,19 +66,21 @@ public class ExampleEjbStartup {
     }
 
     public void logIds(final String indent, final String originId, final String callerId) {
-        LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
-
-        LOG.info("originId: {}, {}caller: {}, exampleRequestBean.class: {}", originId, indent, callerId, exampleRequestBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleRequestBean.getId());
         exampleRequestBean.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleService1.class: {}", originId, indent, callerId, exampleService1.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleService1.getId());
         exampleService1.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleService2.class: {}", originId, indent, callerId, exampleEjbFacade.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleEjbFacade.getId());
         exampleEjbFacade.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleDependedBean.class: {}", originId, indent, callerId, exampleDependedBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleDependedBean.getId());
         exampleDependedBean.logIds(indent + "  ", originId, id);
+    }
+
+    public String getId() {
+        return id;
     }
 
 }

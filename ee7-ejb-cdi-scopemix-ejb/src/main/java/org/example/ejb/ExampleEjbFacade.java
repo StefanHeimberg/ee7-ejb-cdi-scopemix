@@ -54,19 +54,21 @@ public class ExampleEjbFacade {
     }
 
     public void logIds(final String indent, final String originId, final String callerId) {
-        LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
-
-        LOG.info("originId: {}, {}caller: {}, exampleRequestBean.class: {}", originId, indent, callerId, exampleRequestBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleRequestBean.getId());
         exampleRequestBean.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleService1.class: {}", originId, indent, callerId, exampleService1.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleService1.getId());
         exampleService1.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleService2.class: {}", originId, indent, callerId, exampleService2.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleService2.getId());
         exampleService2.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleDependedBean.class: {}", originId, indent, callerId, exampleDependedBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleDependedBean.getId());
         exampleDependedBean.logIds(indent + "  ", originId, id);
+    }
+
+    public String getId() {
+        return id;
     }
 
 }

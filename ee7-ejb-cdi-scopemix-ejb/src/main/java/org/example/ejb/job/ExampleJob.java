@@ -1,14 +1,13 @@
-package org.example.sharedlib;
+package org.example.ejb.job;
 
 import java.util.Set;
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.context.spi.CreationalContext;
 import javax.enterprise.inject.spi.Bean;
 import javax.enterprise.inject.spi.BeanManager;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.example.sharedlib.RandomUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,19 +15,19 @@ import org.slf4j.LoggerFactory;
  *
  * @author Stefan Heimberg <kontakt@stefanheimberg.ch>
  */
-@RequestScoped
-public class ExampleRequestBean {
+@Dependent
+public class ExampleJob {
 
-    public static ExampleRequestBean getBeanInstance() {
-        final Logger LOG = LoggerFactory.getLogger(ExampleRequestBean.class);
+    public static ExampleJob getBeanInstance() {
+        final Logger LOG = LoggerFactory.getLogger(ExampleJob.class);
         try {
             final BeanManager bm = InitialContext.doLookup("java:comp/BeanManager");
 
-            final Class beanType = ExampleRequestBean.class;
+            final Class beanType = ExampleJob.class;
             final Set<Bean<?>> beans = bm.getBeans(beanType);
             final Bean<?> bean = bm.resolve(beans);
             final CreationalContext<?> cc = bm.createCreationalContext(bean);
-            final ExampleRequestBean beanInstance = (ExampleRequestBean) bm.getReference(bean, beanType, cc);
+            final ExampleJob beanInstance = (ExampleJob) bm.getReference(bean, beanType, cc);
             return beanInstance;
         } catch (final NamingException ex) {
             LOG.error(ex.getMessage(), ex);
@@ -40,24 +39,15 @@ public class ExampleRequestBean {
 
     private final String id;
 
-    public ExampleRequestBean() {
-        this.id = RandomUtil.randomId(ExampleRequestBean.class);
+    public ExampleJob() {
+        id = RandomUtil.randomId(ExampleJob.class);
         LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 
-    @PostConstruct
-    public void postConstruct() {
-        LOG.info("postConstruct called");
-    }
-
-    @PreDestroy
-    public void preDestroy() {
-        LOG.info("preDestroy called");
-    }
-
-    public void logIds(final String indent, final String originId, final String callerId) {
-        LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
+    public void execute(final String originId) {
+        LOG.info("execute called");
+        MyStaticSingleton.getInstance().logIds("*", originId, id);
     }
 
     public String getId() {

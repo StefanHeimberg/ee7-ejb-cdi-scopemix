@@ -74,24 +74,22 @@ public class ExampleWebRequest extends HttpServlet {
     }
 
     public void logIds(final String indent, final String originId, final String callerId) {
-        LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
-
-        LOG.info("originId: {}, {}caller: {}, exampleRequestBean.class: {}", originId, indent, callerId, exampleRequestBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleRequestBean.getId());
         exampleRequestBean.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleService1.class: {}", originId, indent, callerId, exampleService1.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleService1.getId());
         exampleService1.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleService2.class: {}", originId, indent, callerId, exampleEjbFacade.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleEjbFacade.getId());
         exampleEjbFacade.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleEjbStartup.class: {}", originId, indent, callerId, exampleEjbStartup.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleEjbStartup.getId());
         exampleEjbStartup.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleEjbLiteService.class: {}", originId, indent, callerId, exampleEjbLiteService.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleEjbLiteService.getId());
         exampleEjbLiteService.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleDependedBean.class: {}", originId, indent, callerId, exampleDependedBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleDependedBean.getId());
         exampleDependedBean.logIds(indent + "  ", originId, id);
     }
 

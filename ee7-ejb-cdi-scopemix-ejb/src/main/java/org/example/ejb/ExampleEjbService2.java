@@ -44,13 +44,15 @@ public class ExampleEjbService2 {
     }
 
     public void logIds(final String indent, final String originId, final String callerId) {
-        LOG.info("originId: {}, {}caller: {}, this.id: {}", originId, indent, callerId, id);
-
-        LOG.info("originId: {}, {}caller: {}, exampleRequestBean.class: {}", originId, indent, callerId, exampleRequestBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleRequestBean.getId());
         exampleRequestBean.logIds(indent + "  ", originId, id);
 
-        LOG.info("originId: {}, {}caller: {}, exampleDependedBean.class: {}", originId, indent, callerId, exampleDependedBean.getClass().getName());
+        LOG.info("originId: {}, {}caller: {}, calling: {}", originId, indent, callerId, exampleDependedBean.getId());
         exampleDependedBean.logIds(indent + "  ", originId, id);
+    }
+
+    public String getId() {
+        return id;
     }
 
 }
