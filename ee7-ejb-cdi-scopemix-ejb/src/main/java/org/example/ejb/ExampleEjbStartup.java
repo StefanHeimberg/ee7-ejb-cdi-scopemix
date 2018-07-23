@@ -53,11 +53,13 @@ public class ExampleEjbStartup {
         LOG.info("originId: {}, {}caller: {}, exampleRequestBeanStatic.class: {}", id, "!" + "  ", id, exampleRequestBeanStatic.getClass().getName());
         exampleRequestBeanStatic.logIds("!", id, id);
 
+        final ExampleJob job = ExampleJob.getBeanInstance();
+
         final ExampleJobScheduler jobScheduler = ExampleJobScheduler.getBeanInstance();
-        jobScheduler.schedule(ExampleJob.getBeanInstance());
-        jobScheduler.schedule(ExampleJob.getBeanInstance());
-        jobScheduler.schedule(ExampleJob.getBeanInstance());
-        jobScheduler.schedule(ExampleJob.getBeanInstance());
+        jobScheduler.schedule(job);
+        jobScheduler.schedule(job);
+        jobScheduler.schedule(job);
+        jobScheduler.schedule(job);
     }
 
     @PreDestroy
