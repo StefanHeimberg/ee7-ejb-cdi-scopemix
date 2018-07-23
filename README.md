@@ -71,7 +71,7 @@ JavaEE 7 Example Application to Demonstrate how CDI Scopes behaves in WEB and EJ
 
 ## Wildfly Specifics
 
-- ```./run-payara.sh``` Start Wildfly Application Server Container (Management: http://localhost:9990)
+- ```./run-wildfly.sh``` Start Wildfly Application Server Container (Management: http://localhost:9990)
 - ```./add-wildfly-admin-user.sh``` Create a Management Admin User (User: admin/admin)
 - ```./shell-wildfly.sh``` Open a new Shell in the running Wildfly Container
 
