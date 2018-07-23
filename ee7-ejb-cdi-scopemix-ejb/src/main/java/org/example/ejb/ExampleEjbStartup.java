@@ -56,10 +56,10 @@ public class ExampleEjbStartup {
         final ExampleJob job = ExampleJob.getBeanInstance();
 
         final ExampleJobScheduler jobScheduler = ExampleJobScheduler.getBeanInstance();
-        jobScheduler.schedule(job);
-        jobScheduler.schedule(job);
-        jobScheduler.schedule(job);
-        jobScheduler.schedule(job);
+        jobScheduler.schedule(job, false);
+        jobScheduler.schedule(job, false);
+        jobScheduler.schedule(job, true);
+        jobScheduler.schedule(job, false);
     }
 
     @PreDestroy

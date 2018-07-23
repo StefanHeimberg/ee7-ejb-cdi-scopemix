@@ -46,13 +46,15 @@ public class ExampleJobScheduler {
 
     private final String id;
 
+    final Map<String, Object> requestDataStore = new HashMap<>();
+
     public ExampleJobScheduler() {
         this.id = RandomUtil.randomId(ExampleJobScheduler.class);
         LOG = LoggerFactory.getLogger(id);
         LOG.info("constructor called");
     }
 
-    public void schedule(final ExampleJob job) {
+    public void schedule(final ExampleJob job, final boolean fail) {
         final String jobThreadId = RandomUtil.randomId(Thread.class);
         LOG.info("originId: {}, schedule job: {} with thread: {}", id, job.getId(), jobThreadId);
         final Runnable jobRunnable = () -> {
@@ -65,13 +67,18 @@ public class ExampleJobScheduler {
                 throw new RuntimeException(ex);
             }
 
-            final Map<String, Object> requestDataStore = new HashMap<>();
             startRequestScope(id, requestDataStore);
 
             try {
                 LOG.info("originId: {}, start job execution", id);
                 job.execute(id);
                 LOG.info("originId: {}, stop job execution", id);
+
+                if (fail) {
+                    requestDataStore.clear();
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException("fail");
+                }
             } finally {
                 stopRequestScope(id, requestDataStore);
             }
@@ -80,20 +87,16 @@ public class ExampleJobScheduler {
 
         LOG.info("originId: {}, starting thread: {}", id, jobThreadId);
         jobExecutionThread.start();
-
-        //        LOG.info("waiting for completion");
-        //        try {
-        //            jobExecutionThread.join();
-        //        } catch (final InterruptedException ex) {
-        //            LOG.error(ex.getMessage(), ex);
-        //            throw new RuntimeException();
-        //        }
     }
 
     private void startRequestScope(final String originId, final Map<String, Object> requestDataStore) {
         LOG.info("originId: {}, start request scope", originId, id);
-        boundRequestContext.associate(requestDataStore);
-        boundRequestContext.activate();
+        try {
+            boundRequestContext.associate(requestDataStore);
+            boundRequestContext.activate();
+        } catch (Exception ex) {
+            LOG.error(ex.getMessage(), ex);
+        }
     }
 
     private void stopRequestScope(final String originId, final Map<String, Object> requestDataStore) {
@@ -101,6 +104,8 @@ public class ExampleJobScheduler {
         try {
             boundRequestContext.invalidate();
             boundRequestContext.deactivate();
+        } catch (Exception ex) {
+            LOG.error(ex.getMessage(), ex);
         } finally {
             boundRequestContext.dissociate(requestDataStore);
         }
